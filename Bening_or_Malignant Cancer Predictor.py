@@ -76,15 +76,9 @@ cf_se=confusion_matrix(Y_se_test,y_se_predictor)
 print(cr_se)
 print(cf_se)
 
-
-# Labelling the malignant and bening results
-diagnosis_label=np.where(tumor_data['diagnosis']=='M',0,1)
-print(diagnosis_label)
-
-
 # Creating the function for predicting based on all the datasets
 def mean_cancer_predictor(rad,texture,perimeter,area,smoothness,compact,concave,concavePoints,symmetry,fractal):
-    if mean_model.predict([[rad,texture,perimeter,area,smoothness,compact,concave,concavePoints,symmetry,fractal]])==0:
+    if mean_model.predict([[rad,texture,perimeter,area,smoothness,compact,concave,concavePoints,symmetry,fractal]])=='M':
         print('Based on the mean data, this patient has malignant cancer')
     else:
         print('Based on the mean data, this patient has benign cancer')
@@ -104,7 +98,7 @@ print(mean_cancer_predictor(rad_mean,texture_mean,perimeter_mean,area_mean,smoot
 
 
 def worst_cancer_predictor(rad,texture,perimeter,compact,concave,concavePoints,symmetry,fractal):
-    if worst_model.predict([[rad,texture,perimeter,compact,concave,concavePoints,symmetry,fractal]])==0:
+    if worst_model.predict([[rad,texture,perimeter,compact,concave,concavePoints,symmetry,fractal]])=='M':
         print('Based on the worst data, this patient has malignant cancer')
     else:
         print('Based on the worst data, this patient has benign cancer')
@@ -122,7 +116,7 @@ print(worst_cancer_predictor(rad_worst,texture_worst,perimeter_worst,compact_wor
 
 
 def se_cancer_predictor(rad,texture,perimeter,area,smoothness,compact,concave,concavePoints,symmetry,fractal):
-    if se_model.predict([[rad,texture,perimeter,area,smoothness,compact,concave,concavePoints,symmetry,fractal]])==0:
+    if se_model.predict([[rad,texture,perimeter,area,smoothness,compact,concave,concavePoints,symmetry,fractal]])=='M':
         print('Based on the se data, this patient has malignant cancer')
     else:
         print('Based on the se data, this patient has benign cancer')
